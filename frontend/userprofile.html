@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/util.css">
+
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="topnav sticky-top" id="myTopnav">
+      <a href="index.html"><img src="images/hikeandseelogo.jpg" height="28px"></a>
+      <a href="/home" class="active">Home</a>
+      <a href="login.html">Login</a>
+      <a href="posts.html">Post</a>
+      <a href="admin/add.html">Add</a>
+      <a href="admin/event.html">event</a>
+      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+        <i class="fa fa-bars"></i>
+      </a>
+    </div>
+ 
+<script>
+
+    $(document).ready(function () {
+
+
+
+        $.getJSON('http://localhost:9000/users', function (res) {
+          console.log(res)
+
+               $.each(res, function (index) {
+                $('#table').append("<tr><td>"+res[index].username+"</td><td>" + 
+               "<Button class='delete' del_id='"+res[index]._id+"'>Delete</Button></td><td>"
+               );
+            });
+        });
+        $('#table').on('click','.details',function(){
+          id=$(this).attr('det_id');
+          location.href="userdetails.html?id="+id;
+        })
+        $('#table').on('click','.delete',function(){
+            id=$(this).attr('del_id');
+            $.ajax({
+              url:'http://localhost:9000/userdelete/'+id,
+              type:'delete',
+              success:function(res){
+                alert('User deleted Successfully');
+                  if(res.message=="success"){
+                    location.href="viewuser.html"
+                  }
+              },
+              error: function(xhr){
+
+              }
+            })
+        })
+    });
+ 
+
+   
+
+</script>
+
+  </head>
+
+  <body>
+        <div class="container">
+        <hr>
+        <h1>You can View your Users here</h1>
+            <div class="card bg-dark">
+                    <table class="table table-dark">
+                            <thead class="thead-inverse">
+                              <tr>
+                                <td>User Name</td>
+                                <td>Delete</td>
+                                
+                              </tr>
+                             
+          
+           </thead>
+            <tbody id="table"></tbody>
+          </table>
+          </div>
+          </div>
+         
+  </body>

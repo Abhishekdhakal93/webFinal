@@ -40,7 +40,7 @@
                 //  +res[index].details+'</div>' +'<div class ="col">' + 
                   // "<button class='btn btn-success clickme details'  det_id='"+res[index]._id+"'>More Details</button>"
                     // +'<hr>'
-                    // +"<button class='btn btn-success clickme details'  book_id='"+res[index]._id+"'>Book</button>"
+                     +"<button class='btn btn-success clickme details'  book_id='"+res[index]._id+"'>Book</button>"
   
               +'<hr>'+'</div>'  +'</div>'   // class name should be different
                 );

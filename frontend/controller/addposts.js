@@ -2,29 +2,29 @@
       $(document).ready(function () {
       
 
-          // let imageFile = '';
-          // $("#postimage").on('change', function () {
-          //     let formData = new FormData();
-          //     let files = $("#postimage").get(0).files;
-          //     if (files.length > 0) {
-          //         formData.append("imageFile", files[0]);
-          //     }
-          //     $.ajax({
-          //         type: 'POST',
-          //         url: 'http://localhost:9000/postimage',
-          //         contentType: false,
-          //         cache: false,
-          //         processData: false,
-          //         data: formData,
-          //         success: function (data) {
-          //             imageFile = data.filename;
-          //             // $("#add-hero").prop("disabled", false);
-          //         },
-          //         error: function () {
-          //             alert("Post Image upload failed!");
-          //         }
-          //     });
-          // });
+          let imageFile = '';
+          $("#postimage").on('change', function () {
+              let formData = new FormData();
+              let files = $("#postimage").get(0).files;
+              if (files.length > 0) {
+                  formData.append("imageFile", files[0]);
+              }
+              $.ajax({
+                  type: 'POST',
+                  url: 'http://localhost:9000/image',
+                  contentType: false,
+                  cache: false,
+                  processData: false,
+                  data: formData,
+                  success: function (data) {
+                      imageFile = data.filename;
+                      // $("#add-hero").prop("disabled", false);
+                  },
+                  error: function () {
+                      alert("Post Image upload failed!");
+                  }
+              });
+          });
              $('#postadd').click(function (e) { 
              e.preventDefault();
              
@@ -36,7 +36,7 @@
              postdetails= $("#postdetails").val();
             
              data = {
-         // "postimage" : imageFile,
+         "postimage" : imageFile,
              "posts" : posts,
              "postdate":postdate,
              "postdetails":postdetails
@@ -75,16 +75,18 @@
                            '<br/>' +
                            //'<div class=" card-body">'+
 
-                           //'<img class="card-img grid p-3" src="http://localhost:9000/'+res[index].postimage+'">' + '<br/>' + 
+                           '<img class="card-img grid p-3" src="http://localhost:9000/'+res[index].postimage+'">' + '<br/>' + 
                          '<strong>Post</strong>'+':'
                          + res[index].posts+'</div>' +
                          '<div class ="col">' + 
                          '<strong>Post date</strong>'+':'
                          + res[index].postdate+'</div>' +'<div class ="col">' + 
                          '<strong>post details</strong>'+':'
-                         + res[index].postdetails+'</div>' 
+                         + res[index].postdetails+'</div>' +
+                         '<button class="btn btn-block btn-primary>' +'Delete' + '</button>'
           
-                      +'<hr>'+'</div>'+'</div>' // class name should be different
+                      +'<hr>'+'</div>'+
+                      '</div>' // class name should be different
                         );
                       });
         

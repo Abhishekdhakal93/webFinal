@@ -124,7 +124,7 @@ var storage = multer.diskStorage({
 
 
 var imageFileFilter = (req, file, cb) => {
-    if (!file.originalname.match(/\.(jpg|JPG|jpeg|png|gif)$/)) {
+    if (!file.originalname.match(/\.(jpg|JPG|jpeg|png|gif|PNG)$/)) {
         return cb(new Error('You can upload only image files!'), false);
     }
     cb(null, true);
@@ -138,15 +138,10 @@ var upload = multer({
 
     app.post('/image', upload.single('imageFile'), (req, res) => {
        res.send(req.file)
-        // res.statusCode = 200;
-        // res.setHeader('Content-Type', 'application/json');
-        // res.json(req.file);
     });
     app.post('/destinationimage', upload.single('imageFile'), (req, res) => {
         res.send(req.file)
-         // res.statusCode = 200;
-         // res.setHeader('Content-Type', 'application/json');
-         // res.json(req.file);x    
+ 
      });
      
     
@@ -236,8 +231,7 @@ app.post('/adddestination', (req,res) => {
             res.send(e)
         });
     });
-
-
+  
     //==================================================
 
     app.delete('/venuedelete/:id',function(req,res){
