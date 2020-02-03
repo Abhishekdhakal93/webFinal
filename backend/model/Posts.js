@@ -4,7 +4,7 @@ const PostsSchema = new mongoose.Schema({
     posts: { // column name
         type: String   //data type String
     },
-    image:{
+    postimage:{
         type: String
     },
     postdate: { // column name

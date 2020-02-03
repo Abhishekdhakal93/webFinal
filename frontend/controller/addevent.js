@@ -1,30 +1,30 @@
  
       $(document).ready(function () {  
    
-        //      let imageFile = '';
-        //  $("#eventimage").on('change', function () {
-        //      let formData = new FormData();
-        //      let files = $("#eventimage").get(0).files;
-        //      if (files.length > 0) {
-        //          formData.append("imageFile", files[0]);
-        //      }
+             let imageFile = '';
+         $("#eventimage").on('change', function () {
+             let formData = new FormData();
+             let files = $("#eventimage").get(0).files;
+             if (files.length > 0) {
+                 formData.append("imageFile", files[0]);
+             }
              
-        //      $.ajax({
-        //          type: 'POST',
-        //          url: 'http://localhost:9000/eventimage',
-        //          contentType: false,
-        //          cache: false,
-        //          processData: false,
-        //          data: formData,
-        //          success: function (data) {
-        //              imageFile = data.filename;
-        //              // $("#add-hero").prop("disabled", false);
-        //          },
-        //          error: function () {
-        //              alert("Event Image upload failed!");
-        //          }
-        //      });
-        //  });
+             $.ajax({
+                 type: 'POST',
+                 url: 'http://localhost:9000/eventimage',
+                 contentType: false,
+                 cache: false,
+                 processData: false,
+                 data: formData,
+                 success: function (data) {
+                     imageFile = data.filename;
+                     // $("#add-hero").prop("disabled", false);
+                 },
+                 error: function () {
+                     alert("Event Image upload failed!");
+                 }
+             });
+         });
              $('#eventadd').click(function (e) { 
              e.preventDefault();
              
@@ -77,7 +77,7 @@
                          '<div class ="col">' + 
                          '<strong>location</strong>'+':'
                          + res[index].eventlocation+'</div>' +'<div class ="col">' + 
-                         '<strong>details</strong>'+':'
+                         '<strong>Event details</strong>'+':'
                          + res[index].eventdetails+'</div>' 
           
                       +'<hr>'+'</div>'+'</div>' // class name should be different

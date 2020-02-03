@@ -230,8 +230,8 @@ app.post('/adddestination', (req,res) => {
         });
         });
       app.get('/postadd', function (req, res) {
-        Event.find().then(function (event) {
-            res.send(event);
+        Posts.find().then(function (post) {
+            res.send(post);
         }).catch(function (e) {
             res.send(e)
         });
