@@ -38,7 +38,7 @@
              data = {
           //"eventimage" : imageFile,
              "posts" : posts,
-             "image" : image,
+            // "image" : image,
              "postdate":postdate,
              "postdetails":postdetails
              }
@@ -46,13 +46,13 @@
          
                              
                       $.ajax({  
-                          url: 'http://localhost:9000/addposts/',
+                          url: 'http://localhost:9000/postadd/',
                           type: 'post',  
                           dataType: 'json',  
                           data:data,  
                           success: function (res, textStatus, xhr) {  
-                                  alert('Event Added Successfully');          
-                         location.href="home.html";            
+                                  alert('post Added Successfully');          
+                         location.href="posts.html";            
                           },  
                           error: function (xhr, textStatus, errorThrown) {  
                               console.log('Error in Operation');  
@@ -60,12 +60,12 @@
                       });  
                   });
                   $.ajax({
-                    url: 'http://localhost:9000/addposts',
+                    url: 'http://localhost:9000/postadd',
                     type: 'get',
             
                     success: function (res, textStatus, xhr) {
                       $.each(res, function (index) {
-                        $('#eventtable').append(
+                        $('#posttable').append(
                           '<br>'+
                            '<div class ="cardres1">'
                            +
@@ -73,13 +73,13 @@
                           '<stong></strong>'
                          +'<div class="col">'+
                            '<br/>' +
-                         '<strong>destination Name</strong>'+':'
+                         '<strong>Post</strong>'+':'
                          + res[index].posts+'</div>' +
                          '<div class ="col">' + 
-                         '<strong>location</strong>'+':'
-                         + res[index].eventlocation+'</div>' +'<div class ="col">' + 
-                         '<strong>details</strong>'+':'
-                         + res[index].eventdetails+'</div>' 
+                         '<strong>Post date</strong>'+':'
+                         + res[index].postdate+'</div>' +'<div class ="col">' + 
+                         '<strong>post details</strong>'+':'
+                         + res[index].postdetails+'</div>' 
           
                       +'<hr>'+'</div>'+'</div>' // class name should be different
                         );

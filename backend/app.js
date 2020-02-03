@@ -18,6 +18,7 @@ const User = require('./model/User');
 // const Booking = require('./model/Booking');
 const Destination = require('./model/Destination');
  const Event = require('./model/Event');
+ const Posts = require('./model/Posts')
 
 
 const middleware = require('./middleware/middleware');

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const PostSchema = new mongoose.Schema({
+const PostsSchema = new mongoose.Schema({
 
     posts: { // column name
         type: String   //data type String
@@ -15,7 +15,7 @@ const PostSchema = new mongoose.Schema({
     },
 })
         
-        const Event= mongoose.model('Posts',EventSchema)
+        const Posts= mongoose.model('Posts',PostsSchema)
     
 
-    module.exports = Post
+    module.exports = Posts
