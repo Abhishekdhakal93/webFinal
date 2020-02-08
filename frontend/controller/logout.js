@@ -10,7 +10,7 @@ $(document).ready(function () {
        }
      },
      success: function(data) {
-    location.href="login.html";
+    location.href="home.html";
                                      
         },
      error: function() {

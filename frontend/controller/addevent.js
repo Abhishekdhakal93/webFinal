@@ -36,7 +36,7 @@ $(document).ready(function () {
     eventimage = $("#eventimage").val();
 
     data = {
-      //"eventimage" : imageFile,
+      "eventimage" : imageFile,
       "eventname": eventname,
       "eventlocation": eventlocation,
       "eventdetails": eventdetails
@@ -65,10 +65,17 @@ $(document).ready(function () {
       $.each(res, function (index) {
         $('#eventtable').append(
           '<br>' +
-          '<div class ="cardres1">'
+          '<div class ="cardres1">'+
+          '<div class="card-body">'+
+          '<stong></strong>'
+         +'<div class="col">'+
+           '<br/>' +
+           
+
+           '<img class="card-img grid p-3" src="http://localhost:9000/'+res[index].eventimage+'">' + '<br/>' +
           +
           '<div class="card-body">' +
-          '<stong></strong>'
+          '<stong></strong>'  
           + '<div class="col">' +
           '<br/>' +
           '<strong>Event Name</strong>' + ':'

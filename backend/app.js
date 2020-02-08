@@ -144,9 +144,13 @@ var upload = multer({
  
      });
      
-    
-    
-    
+
+   //dashboard tokens client file
+   app.get('/user/me',function(req,res)
+   {  
+       res.send(req.user);
+   })
+   
 
    app.put('/updateprofile',auth, function (req, res) {   //update producte
     console.log(req.body);
@@ -155,7 +159,7 @@ var upload = multer({
     });
   });
   
-  app.put('/updatevenue', function (req, res) {   //update producte
+  app.put('/updateevent', function (req, res) {   //update producte
     console.log(req.body);
     Venue.findByIdAndUpdate(req.body.id, req.body, { new: true }, (err, venue) => {
       res.send("succesfull");
@@ -169,6 +173,14 @@ var upload = multer({
         res.send({message:"success"})
     })
   })
+
+  app.delete('/postdelete/:id',function(req,res){
+    uid=req.params.id.toString();
+    Destination.findByIdAndDelete(uid).then(function(){
+        res.send({message:"success"})
+    })
+  })
+
 
 
 
@@ -191,6 +203,23 @@ app.post('/adddestination', (req,res) => {
             res.send(e)
         });
     });
+    //---------------------------------------------
+    app.delete('/destinationdelete/:id',function(req,res){
+      uid=req.params.id.toString();
+      Venue.findByIdAndDelete(uid).then(function(){
+          res.send({message:"success"})
+      })
+    })
+    app.get('/adddestination/:id', function (req, res) {
+      uid=req.params.id.toString();
+      Venue.findById(uid).then(function (venue) {
+  
+          res.send(venue);
+      }).catch(function (e) {
+          res.send(e)
+      });
+  
+  });
 
     // hike event
     app.post('/eventadd', (req,res) => {
@@ -234,7 +263,7 @@ app.post('/adddestination', (req,res) => {
   
     //==================================================
 
-    app.delete('/venuedelete/:id',function(req,res){
+    app.delete('/destinationdelete/:id',function(req,res){
         uid=req.params.id.toString();
         Venue.findByIdAndDelete(uid).then(function(){
             res.send({message:"success"})
@@ -289,7 +318,7 @@ app.get('/bookedvenue', function (req, res)
 
 
   });
-  app.get('/venuestatus', auth, function (req, res) {
+  app.get('/venue status', auth, function (req, res) {
       console.log(req.user._id)
   
     Booking.find({uid: req.user._id})
@@ -330,6 +359,19 @@ app.post('/venueeventadd', (req,res) => {
       res.send(e);
   });
   });
+
+  app.post('/users/logout', auth, async (req, res) => {
+    try {
+        console.log( req.user.tokens);
+    req.user.tokens = req.user.tokens.filter((token) => {
+    return token.token !== req.token
+    })
+    await req.user.save()
+    res.send()
+    } catch (e) {
+    res.status(500).send()
+    }
+   })
 
 app.listen(9000);
 console.log('server in 9000')

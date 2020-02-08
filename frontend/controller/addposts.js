@@ -18,6 +18,7 @@
                   data: formData,
                   success: function (data) {
                       imageFile = data.filename;
+                      
                       // $("#add-hero").prop("disabled", false);
                   },
                   error: function () {
@@ -51,7 +52,7 @@
                           data:data,  
                           success: function (res, textStatus, xhr) {  
                                   alert('post Added Successfully');          
-                         location.href="posts.html";            
+                         location.href="home.html";            
                           },  
                           error: function (xhr, textStatus, errorThrown) {  
                               console.log('Error in Operation');  
@@ -65,6 +66,7 @@
                     success: function (res, textStatus, xhr) {
                       console.log(res);
                       $.each(res, function (index) {
+                        //posttable is id to connect with html
                         $('#posttable').append(
                           '<br>'+
                            '<div class ="cardres1">'
@@ -73,7 +75,7 @@
                           '<stong></strong>'
                          +'<div class="col">'+
                            '<br/>' +
-                           //'<div class=" card-body">'+
+                           '<div class=" card-body">'+
 
                            '<img class="card-img grid p-3" src="http://localhost:9000/'+res[index].postimage+'">' + '<br/>' + 
                          '<strong>Post</strong>'+':'
